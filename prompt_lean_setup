@@ -20,6 +20,7 @@ PROMPT_LEAN_CMD_MAX_EXEC_TIME=5
 PROMPT_LEAN_ABBR_METHOD=${PROMPT_LEAN_ABBR_METHOD-"truncate"}
 PROMPT_LEAN_VCS=${PROMPT_LEAN_VCS-1}
 PROMPT_LEAN_PWD=${PROMPT_LEAN_PWD-1}
+PROMPT_LEAN_CHAR=${PROMPT_LEAN_CHAR-"%#"}
 
 prompt_lean_help() {
   cat <<'EOF'
@@ -159,7 +160,7 @@ prompt_lean_precmd() {
     setopt promptsubst
     local vcs_info_str=''
     [[ $PROMPT_LEAN_VCS == 1 ]] && vcs_info_str='$vcs_info_msg_0_' # avoid https://github.com/njhartwell/pw3nage
-    PROMPT="$prompt_lean_jobs%F{"$COLOR3"}${prompt_lean_tmux}%f`$PROMPT_LEAN_LEFT`%f%(?.%F{"$COLOR2"}.%B%F{203})%#%f%k%b "
+    PROMPT="$prompt_lean_jobs%F{"$COLOR3"}${prompt_lean_tmux}%f`$PROMPT_LEAN_LEFT`%f%(?.%F{"$COLOR2"}.%B%F{203})$PROMPT_LEAN_CHAR%f%k%b "
 
     local lean_pwd=''
     [[ $PROMPT_LEAN_PWD == 1 ]] && lean_pwd=`prompt_lean_pwd`
